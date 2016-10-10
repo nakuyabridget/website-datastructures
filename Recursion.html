@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+<meta charset="UTF-8">
+<title><em> Welcome to Data Structures and algorithms </em></title>
+</head>
+<body>
+
+<h1>Recursive Functions</h1>
+<h1>Definition</h1>
+<p>Mona Lisa Fractal Recursion has something to do with infinity. I know recursion has something to do with infinity. I think I know recursion has something to do with infinity. He is sure I think I know recursion has something to do with infinity. We doubt he is sure I think I know ... We think that you think that we convinced you now that we can go on forever with this example of a recursion from natural language. Recursion is not only a fundamental feature of natural language, but of the human cognitive capacity. Our way of thinking is based on a recursive thinking processes. Even with a very simple grammar, like "An English sentence contains a subject and a predicate, and a predicate contains a verb, an object and a complement", we can demonstrate the infinite possibilities of the natural language. The cognitive scientist and linguist Stephen Pinker phrases it like this: "With a few thousand nouns that can fill the subject slot and a few thousand verbs that can fill the predicate slot, one already has several million ways to open a sentence. The possible combinations quickly multiply out to unimaginably large numbers. Indeed, the repertoire of sentences is theoretically infinite, because the rules of language use a trick called recursion. A recursive rule allows a phrase to contain an example of itself, as in She thinks that he thinks that they think that he knows and so on, ad infinitum. And if the number of sentences is infinite, the number of possible thoughts and intentions is infinite too, because virtually every sentence expresses a different thought or intention.</p>
+
+<p>We have to stop our short excursion to the use of recursion in natural language to come back to recursion in computer science and programs and finally to recursion in the programming language Python.</p>
+
+<p>The adjective "recursive" originates from the Latin verb "recurrere", which means "to run back". And this is what a recursive definition or a recursive function does: It is "running back" or returning to itself. Most people who have done some mathematics, computer science or read a book about programming will have encountered the factorial, which is defined in mathematical terms as 
+
+n! = n * (n-1)!, if n > 1 and f(1) = 1 
+
+It's used so often as an example for recursion because of its simplicity and clarity. We will come back to it in the following.
+<dl>
+<dt>Definition of Recursion<dt>
+
+<dt>Recursion is a method of programming or coding a problem, in which a function calls itself one or more times in its body. Usually, it is returning the return value of this function call. If a function definition satisfies the condition of recursion, we call this function a recursive function.<dt>
+
+<dl>Termination condition:
+A recursive function has to fulfil an important condition to be used in a program: it has to terminate. A recursive function terminates, if with every recursive call the solution of the problem is downsized and moves towards a base case. A base case is a case, where the problem can be solved without further recursion. A recursion can end up in an infinite loop, if the base case is not met in the calls. </dl>
+
+<ul>Example: 
+
+<li>4! = 4 * 3!</li>
+<li>3! = 3 * 2!</li>
+<li>2! = 2 * 1!</li>
+
+</ul>
+
+<p>Replacing the calculated values gives us the following expression</p>
+
+<p>4! = 4 * 3 * 2 * 1 </p>
+
+<p>Generally we can say: Recursion in computer science is a method where the solution to a problem is based on solving smaller instances of the same problem. </p> 
+
+<h1>Recursive Functions in Python</h1>
+<p>Now we come to implement the factorial in Python. It's as easy and elegant as the mathematical definition.</p>
+<p>
+def factorial(n):<br>
+    if n == 1:<br>
+        return 1<br>
+    else:<br>
+        return n * factorial(n-1)<br>
+<p>We can track how the function works by adding two print() function to the previous function definition:</p>
+def factorial(n):<br>
+    print("factorial has been called with n = " + str(n))<br>
+    if n == 1:<br>
+        return 1<br>
+    else:<br>
+        res = n * factorial(n-1)<br>
+        print("intermediate result for ", n, " * factorial(" ,n-1, "): ",res)<br>
+        return res<br>
+
+print(factorial(5))<br>
+This Python script outputs the following results:<br>
+factorial has been called with n = 5<br>
+factorial has been called with n = 4<br>
+factorial has been called with n = 3<br>
+factorial has been called with n = 2<br>
+factorial has been called with n = 1<br>
+intermediate result for  2  * factorial( 1 ):  2<br>
+intermediate result for  3  * factorial( 2 ):  6<br>
+intermediate result for  4  * factorial( 3 ):  24<br>
+intermediate result for  5  * factorial( 4 ):  120<br>
+120<br>
+Let's have a look at an iterative version of the factorial function.
+def iterative_factorial(n):
+    result = 1
+    for i in range(2,n+1):
+        result *= i
+    return result
+
+The Pitfalls of Recursion
+
+Fibonacci Squares This subchapter of our tutorial on recursion deals with the Fibonacci numbers. What do have sunflowers, the Golden ratio, fir tree cones, The Da Vinci Code, the song "Lateralus" by Tool, and the graphic on the right side in common. Right, the Fibonacci numbers. 
+
+The Fibonacci numbers are the numbers of the following sequence of integer values: 
+
+0,1,1,2,3,5,8,13,21,34,55,89, ... 
+
+The Fibonacci numbers are defined by: 
+Fn = Fn-1 + Fn-2 
+with F0 = 0 and F1 = 1 
+
+The Fibonacci sequence is named after the mathematician Leonardo of Pisa, who is better known as Fibonacci. In his book "Liber Abaci" (publishes 1202) he introduced the sequence as an exercise dealing with bunnies. His sequence of the Fibonacci numbers begins with F1 = 1, while in modern mathematics the sequence starts with F0 = 0. But this has no effect on the other members of the sequence. 
+
+The Fibonacci numbers are the result of an artificial rabbit population, satisfying the following conditions: 
+a newly born pair of rabbits, one male, one female, build the initial population
+these rabbits are able to mate at the age of one month so that at the end of its second month a female can bring forth another pair of rabbits
+these rabbits are immortal
+a mating pair always produces one new pair (one male, one female) every month from the second month onwards
+The Fibonacci numbers are the numbers of rabbit pairs after n months, i.e. after 10 months we will have F10 rabits. 
+
+The Fibonacci numbers are easy to write as a Python function. It's more or less a one to one mapping from the mathematical definition:
+def fib(n):
+    if n == 0:
+        return 0
+    elif n == 1:
+        return 1
+    else:
+        return fib(n-1) + fib(n-2)
+An iterative solution is also easy to write, though the recursive solution looks more like the definition:
+def fibi(n):
+    old, new = 0, 1
+    if n == 0:
+        return 0
+    for i in range(n-1):
+        old, new = new, old + new
+    return new
+</p>
+
+
+
+</body>
+</html>
